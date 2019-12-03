@@ -1,0 +1,22 @@
+node{
+    def jdk = tool name: 'JAVA_HOME'
+    env.JAVA_HOME = "${jdk}"
+
+    echo "jdk installation path is: ${jdk}"
+  
+  
+     stage('SCM Checkout'){
+        git 'https://github.com/haribabu-git/SpringMVCHelloWorld'    
+     }
+  
+     stage('Compile-package'){
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven';
+        echo 'maven clean'
+        bat "${mvnHome}/bin/mvn -f HelloWorld/pom.xml clean package"
+     }
+     stage('Deployment'){
+       
+        bat 'del "C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps\\HelloWorld.war " && xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\SpringHelloWorld\\HelloWorld\\target\\HelloWorld.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps"'
+      }
+
+}
