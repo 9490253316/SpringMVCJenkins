@@ -15,4 +15,10 @@ node{
         echo 'maven clean'
         bat "${mvnHome}/bin/mvn -f HelloWorld/pom.xml clean package"
      }
+     
+      stage('Deployment'){
+       
+        bat 'del "C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps\\HelloWorld.war " && xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\SpringMVCGitMavenJenkins\\HelloWorld\\target\\HelloWorld.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps"'
+                   
+      }
  }
