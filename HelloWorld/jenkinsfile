@@ -1,6 +1,7 @@
 node{
     def jdk = tool name: 'JAVA_HOME'
     env.JAVA_HOME = "${jdk}"
+    env.PATH = "C:\\WINDOWS\\SYSTEM32"
 
     echo "jdk installation path is: ${jdk}"
   
