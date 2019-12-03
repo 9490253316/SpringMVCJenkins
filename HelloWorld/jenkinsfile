@@ -12,6 +12,6 @@ node{
      stage('Compile-package'){
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven';
         echo 'maven clean'
-        bat "${mvnHome}/bin/mvn -f HelloWorld/pom.xml clean package"
+        bat "${mvnHome}/bin/mvn -f HelloWorld/pom.xml clean"
      }
  }
